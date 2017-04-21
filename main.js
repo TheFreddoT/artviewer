@@ -12,7 +12,7 @@ function update(){
 			for(var x=0;x<500;x+=1){
 				var pos = (y * 500 + x) * 4;
 				var luminosity = (0.2126 * iD[pos] + 0.7152 * iD[pos + 1] + 0.0722 * iD[pos + 2]) / 255;
-				var l = Math.round(luminosity * 1000) / 1000;
+				var l = 255 * Math.round(luminosity * 1000) / 1000;
 				mainContext.fillStyle = "rgb(" + l + "," + l + "," + l + ")";
 				mainContext.fillRect(x, y, x+1,y+1);
 			}
