@@ -5,21 +5,20 @@ var mean = 0;
 function update(){
 	if(streaming){
 		mainContext.drawImage(camVideo, 0, 0, 500, 500);
-		var iD = mainContext.getImageData(0, 0, 500, 500).data;
-		mainContext.fillStyle = "black";
-		mainContext.fillRect(0, 0, mainCanvas.width, mainCanvas.height);	
-		for(var y=0;y<500;y+=2){
-			for(var x=0;x<500;x+=2){
-				var pos = (y * 500 + x) * 4;
-				var luminosity = (0.2126 * iD[pos] + 0.7152 * iD[pos + 1] + 0.0722 * iD[pos + 2]) / 255;
-				var l = 255 * Math.round(luminosity * 1000) / 1000;
-				mainContext.fillStyle = "rgb(" + l + "," + l + "," + l + ")";
-				mainContext.fillRect(x, y, 1,1);
-			}
-		}
+		var imgData = mainContext.getImageData(0, 0, canvas.width, canvas.height);
+        	var pixels  = imgData.data;
+        	for (var i = 0, n = pixels.length; i < n; i += 4) {
+        		var grayscale = pixels[i] * .3 + pixels[i+1] * .59 + pixels[i+2] * .11;
+        		pixels[i  ] = grayscale;        // red
+        		pixels[i+1] = grayscale;        // green
+        		pixels[i+2] = grayscale;        // blue
+        		//pixels[i+3]              is alpha
+    		}
+    //redraw the image in black & white
+    		mainContext.putImageData(imgData, 0, 0);
 	}
 //	window.requestAnimationFrame(update);
-	window.setTimeout(update, 50);
+	window.requestAnimationFrame(update);
 }
 
 update();
