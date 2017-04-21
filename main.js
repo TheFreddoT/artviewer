@@ -1,7 +1,7 @@
 var mainCanvas = document.getElementById("mainCanvas");
 var mainContext = mainCanvas.getContext("2d");
 var out = document.getElementById("output");
-var artVideo = new Video();
+var artVideo = document.createElement('video');
 artVideo.loop = true;
 var numVideos = 3;
 var mean = 0;
