@@ -9,25 +9,12 @@ function update(){
 		var oData = "";
 		var total = 0;
 		for(var y=0;y<500;y+=5){
-			for(var x=499;x>=0;x-=5){
+			for(var x=0;x<500;x+=5){
 				var pos = (y * 500 + x) * 4;
 				var luminosity = (0.2126 * iD[pos] + 0.7152 * iD[pos + 1] + 0.0722 * iD[pos + 2]) / 255;
-				total += luminosity;
-				var l = luminosity;
-				if(l < mean){
-					mainContext.fillStyle = "#000000";
-					mainContext.fillRect(x, y, 1, 1);
-					oData += "@&#8239;";
-				} else if(l < mean * 1.5){
-					mainContext.fillStyle = "#888888";
-					mainContext.fillRect(x, y, 1, 1);
-					oData += "O&#8239;";
-				} else {
-					mainContext.fillStyle = "#FFFFFF";
-					mainContext.fillRect(x, y, 1, 1);
-					oData += "-&#8239;";
-				}
-				last = luminosity;
+				var l = Math.round(luminosity * 1000) / 1000;
+				mainContext.fillStyle = "rgba(255, 255, 255, " + l + ")";
+				mainContext.fillRect(x, y, x+4,y+4);
 			}
 			oData += "\n";
 		}
