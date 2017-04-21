@@ -4,7 +4,7 @@ var out = document.getElementById("output");
 var mean = 0;
 function update(){
 	if(streaming){
-		mainContext.drawImage(camVideo, 0, 0, 500, 500);
+		mainContext.drawImage(camVideo, 0, 0);
 		var imgData = mainContext.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
         	var pixels  = imgData.data;
         	for (var i = 0, n = pixels.length; i < n; i += 4) {
