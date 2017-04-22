@@ -3,6 +3,7 @@ var mainContext = mainCanvas.getContext("2d");
 var out = document.getElementById("output");
 var artVideo = document.createElement('video');
 artVideo.loop = true;
+artVideo.autoplay = true;
 var numVideos = 3;
 var mean = 0;
 var cuVideo = -1;
@@ -11,6 +12,8 @@ function changeVid(){
 	cuVideo = Math.round(Math.random() * numVideos) - 1;
 	artVideo.src = "video/" + cuVideo + ".mp4";
 }
+
+window.setInterval(changeVid, Math.random() * 10000 + 5000);
 
 function update(){
 	if(cuVideo >= 0){
