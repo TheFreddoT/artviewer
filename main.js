@@ -4,7 +4,7 @@ var out = document.getElementById("output");
 var artVideo = document.createElement('video');
 artVideo.loop = true;
 artVideo.autoplay = true;
-var numVideos = 3;
+var numVideos = 12;
 var mean = 0;
 var cuVideo = -1;
 
